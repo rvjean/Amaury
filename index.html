@@ -30,7 +30,7 @@
     text-align: left;
   }
   #startBtn {
-    display: block;       /* pour pouvoir centrer avec margin auto */
+    display: block;
     margin: 150px auto 0 auto;
     font-size: 26px;
     background: #00ff66;
@@ -100,16 +100,16 @@ function showSnake() {
   snake.classList.remove('hidden');
 
   let pos = -200;
-  // largeur approx. du snake (en pixels)
   const snakeWidth = snake.offsetWidth;
-  const maxPos = window.innerWidth - snakeWidth;
 
   const move = setInterval(() => {
     pos += 5;
-    if (pos >= maxPos) {
-      pos = maxPos;
+    if (pos + snakeWidth >= window.innerWidth) {
+      pos = window.innerWidth - snakeWidth;
+      snake.style.left = pos + 'px';
       clearInterval(move);
       revealGift();
+      return;
     }
     snake.style.left = pos + 'px';
   }, 30);
