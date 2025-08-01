@@ -9,38 +9,52 @@
     background-color: black;
     color: #00ff66;
     font-family: "Courier New", monospace;
-    font-size: 28px;
+    font-size: 22px;
     padding: 20px;
     margin: 0;
+    text-align: center; /* centrer par défaut */
   }
+
   .hidden { visibility: hidden; }
   .blink { animation: blink 1s step-start 0s infinite; }
   @keyframes blink { 50% { opacity: 0; } }
+
   #snake {
     color: #00ff66;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 16px;
     white-space: pre;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin: 40px auto;
+    display: inline-block;
+    text-align: left; /* pour garder le dessin du serpent correct */
   }
+
   .line { 
     margin: 0 0 10px 0;
-    text-align: left;
+    text-align: left; /* le code reste aligné à gauche */
+    display: inline-block;
   }
+
   #startBtn {
     display: block;
-    margin: 150px auto 0 auto;
-    font-size: 26px;
+    margin: 150px auto 50px auto;
+    font-size: 22px;
     background: #00ff66;
     border: none;
-    padding: 20px 40px;
+    padding: 16px 32px;
     cursor: pointer;
     color: black;
     font-weight: bold;
     border-radius: 12px;
     max-width: 90vw;
     box-sizing: border-box;
+  }
+
+  /* Ajustement pour petits écrans */
+  @media (max-width: 600px) {
+    body { font-size: 18px; }
+    #snake { font-size: 12px; }
+    #startBtn { font-size: 18px; padding: 12px 24px; }
   }
 </style>
 </head>
@@ -120,4 +134,3 @@ startBtn.addEventListener('click', () => {
 
 </body>
 </html>
-
