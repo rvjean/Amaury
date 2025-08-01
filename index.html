@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Joyeux Anniversaire !</title>
+<style>
+  body {
+    background-color: black;
+    color: #00ff66;
+    font-family: "Courier New", monospace;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+  }
+  .hidden { visibility: hidden; }
+  .blink { animation: blink 1s step-start 0s infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  #snake {
+    color: #00ff66;
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    top: 50px;
+    left: -200px;
+    white-space: pre;
+  }
+  .line { margin: 0; text-align: left; }
+  #startBtn {
+    margin-top: 100px;
+    font-size: 22px;
+    background: #00ff66;
+    border: none;
+    padding: 15px 30px;
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+    border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+
+<button id="startBtn">Cliquez ici pour commencer</button>
+
+<div id="code"></div>
+<div id="snake" class="hidden">
+         /^\\/^\\
+       _|__|  O|
+\/     /~     \\_/ \\
+ \\____|__________/  \\
+        \\_______      \\
+                `\\     \\                 \\
+                  |     |                  \\
+                 /      /                    \\
+                /     /                       \\
+              /      /                         \\ \\
+             /     /                            \\  \\
+           /     /             _----_            \\   \\
+          /     /           _-~      ~-_         |   |
+         (      (        _-~    _--_    ~-_     _/   |
+          \\      ~-____-~    _-~    ~-_    ~-_-~    /
+            ~-_           _-~          ~-_       _-~
+               ~--______-~                ~-___-~
+</div>
+
+<script>
+const codeLines = [
+    'cadeau = "???"',
+    'if age == 14:',
+    '    cadeau = "Un stage Python !"',
+    'print("Joyeux anniversaire ! Ton cadeau est :", cadeau)'
+];
+
+const codeEl = document.getElementById('code');
+const startBtn = document.getElementById('startBtn');
+let i = 0;
+
+function typeLine() {
+  if (i < codeLines.length) {
+    const line = document.createElement('div');
+    line.className = "line";
+    line.textContent = codeLines[i];
+    codeEl.appendChild(line);
+    i++;
+    setTimeout(typeLine, 1200);
+  } else {
+    showSnake();
+  }
+}
+
+function showSnake() {
+  const snake = document.getElementById('snake');
+  snake.classList.remove('hidden');
+
+  let pos = -200;
+  const move = setInterval(() => {
+    pos += 5;
+    snake.style.left = pos + 'px';
+    if (pos > window.innerWidth) {
+      clearInterval(move);
+      revealGift();
+    }
+  }, 30);
+}
+
+function revealGift() {
+  document.body.appendChild(document.createElement('br'));
+  const finalLine = document.createElement('div');
+  finalLine.textContent = "🎁 Joyeux anniversaire ! Ton cadeau est : UN STAGE PYTHON ! 🎉";
+  finalLine.className = "blink";
+  document.body.appendChild(finalLine);
+  document.body.appendChild(document.createElement('br'));
+  const ded = document.createElement('div');
+  ded.textContent = "De la part de Papy, Mamie et Tatie";
+  document.body.appendChild(ded);
+}
+
+// Lancement au clic sur le bouton
+startBtn.addEventListener('click', () => {
+  startBtn.style.display = 'none';
+  typeLine();
+});
+</script>
+
+</body>
+</html>
