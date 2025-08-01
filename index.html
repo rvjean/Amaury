@@ -12,13 +12,14 @@
     font-size: 22px;
     padding: 20px;
     margin: 0;
-    text-align: center; /* centrer par défaut */
+    text-align: center; /* pour centrer le reste */
   }
 
   .hidden { visibility: hidden; }
   .blink { animation: blink 1s step-start 0s infinite; }
   @keyframes blink { 50% { opacity: 0; } }
 
+  /* Serpent centré */
   #snake {
     color: #00ff66;
     font-weight: bold;
@@ -26,13 +27,17 @@
     white-space: pre;
     margin: 40px auto;
     display: inline-block;
-    text-align: left; /* pour garder le dessin du serpent correct */
+    text-align: left;
+  }
+
+  /* Zone de code alignée à gauche */
+  #code {
+    display: inline-block;
+    text-align: left;
   }
 
   .line { 
     margin: 0 0 10px 0;
-    text-align: left; /* le code reste aligné à gauche */
-    display: inline-block;
   }
 
   #startBtn {
